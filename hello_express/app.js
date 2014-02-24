@@ -13,7 +13,7 @@ var mongoClient = new MongoClient(new Server('localhost', 27017, { 'native_parse
 var db = mongoClient.db('course')
 
 app.get('/', function (req, res) {
-	db.collection('hello_mongon_express').findOne({}, function (err, doc) {
+	db.collection('users').findOne({}, function (err, doc) {
 		res.render('index', doc)
 	})
 })
