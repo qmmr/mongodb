@@ -3,7 +3,7 @@ var port = 8080
 var app = express()
 var consolidate = require('consolidate')
 
-app.engine('html', cons.swig)
+app.engine('html', consolidate.swig)
 app.set('view engine', 'html')
 app.set('views', __dirname + '/views')
 
