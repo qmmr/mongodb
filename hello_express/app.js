@@ -16,6 +16,8 @@ function errorHandler (err, req, res, next) {
 app.engine('html', consolidate.swig)
 app.set('view engine', 'html')
 app.set('views', __dirname + '/views')
+app.use(express.bodyParser())
+app.use(app.router)
 
 var mongoClient = new MongoClient(new Server('localhost', 27017, { 'native_parser': true }))
 var db = mongoClient.db('course')
@@ -26,6 +28,20 @@ app.get('/', function (req, res) {
 		res.render('index', doc)
 	})
 })
+
+app.get('/fruits', function (req, res, next) {
+	res.render('fruits', { 'fruits': ['apple', 'orange', 'banana', 'strawberry']})
+})
+
+app.post('/favfruit', function (req, res, next) {
+	var favfruit = req.body.fruit
+	if (typeof favfruit == 'undefined') {
+		next(Error('Please choose a fruit!'))
+	} else {
+		res.send('Your favourite fruit is ' + favfruit)
+	}
+})
+
 app.get('/:name', function (req, res, next) {
 	var name = req.params.name
 	var getVar = req.query.getVar
