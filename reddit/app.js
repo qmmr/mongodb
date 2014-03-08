@@ -11,15 +11,13 @@ MongoClient.connect('mongodb://127.0.0.1:27017/reddit', function (err, db) {
 				return story.data
 			})
 
-			console.log(obj, posts);
+			db.collection('cats').insert(posts, function (err, data) {
+				if (err) throw err
+
+				console.dir(data)
+
+				db.close()
+			})
 		}
-
-		db.collection('cats').insert(posts, function (err, data) {
-			if (err) throw err
-
-			console.dir(data)
-
-			db.close()
-		})
 	})
 })
