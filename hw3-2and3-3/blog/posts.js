@@ -88,14 +88,19 @@ function PostsDAO(db) {
     this.addComment = function(permalink, name, email, body, callback) {
         "use strict";
 
-        var comment = {'author': name, 'body': body}
+        var comment = { 'author': name, 'body': body }
 
         if (email != "") {
             comment['email'] = email
         }
 
-        // hw3.3 TODO
-        callback(Error("addComment NYI"), null);
+        posts.update({ 'permalink': permalink }, { '$push': { 'comments': comment } }, function (err, updated) {
+            'use strict';
+
+            if ( !err ) {
+                callback(null, updated)
+            }
+        })
     }
 }
 
