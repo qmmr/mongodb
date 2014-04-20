@@ -5,6 +5,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function (err, db) {
 
 	// to index the coll collection we run this query in the terminal
 	// db.coll.ensureIndex({x:1, y:1, z:1})
+	// db.coll.getIndexes()
 
 	// var cursor = db.collection('coll').find({ 'x': 2 })
 	// the explain now returns 'BtreeCursor x_1_y_1_z_1'
