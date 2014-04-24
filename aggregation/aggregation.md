@@ -66,3 +66,16 @@ db.zips.aggregate([{
 		postal_codes: { $addToSet: "$_id" }
 	}
 }])
+
+## using $push - difference is that $push does not care if the same name is in the array
+
+## $max and $min
+## query
+db.zips.aggregate([{
+	$group: {
+		_id: "$state",
+		pop: {
+			$max: "$pop"
+		}
+	}
+}])
