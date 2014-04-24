@@ -55,3 +55,14 @@ db.zips.aggregate([
 		}
 	}
 ])
+
+## creating new array of of aggregated data using $addToSet
+same schema
+
+## query
+db.zips.aggregate([{
+	$group: {
+		_id: "$city",
+		postal_codes: { $addToSet: "$_id" }
+	}
+}])
