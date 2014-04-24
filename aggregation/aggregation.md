@@ -18,3 +18,27 @@ db.products.aggregate([
 		}
 	}
 ])
+
+## counting using $sum
+## schema
+{
+	"city" : "ACMAR",
+	"loc" : [
+		-86.51557,
+		33.584132
+	],
+	"pop" : 6055,
+	"state" : "AL",
+	"_id" : "35004"
+}
+## query
+db.zips.aggregate([
+	{
+		$group: {
+			_id: "$state",
+			population: {
+				$sum: "$pop"
+			}
+		}
+	}
+])
