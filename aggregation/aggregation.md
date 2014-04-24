@@ -42,3 +42,16 @@ db.zips.aggregate([
 		}
 	}
 ])
+
+## getting average data
+same schema as before
+
+## query
+db.zips.aggregate([
+	{
+		$group: {
+			_id: "$state",
+			average_pop: { $avg: "$pop" }
+		}
+	}
+])
