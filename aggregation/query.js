@@ -8,6 +8,17 @@ MongoClient.connect('mongodb://127.0.0.1:27017/usa', function (err, db) {
 			$match: {
 				state: 'NY'
 			}
+		},
+		{
+			$group: {
+				_id: '$city',
+				population: {
+					$sum: '$pop'
+				},
+				zips: {
+					$addToSet: '$_id'
+				}
+			}
 		}
 	]
 
