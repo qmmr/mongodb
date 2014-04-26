@@ -79,3 +79,31 @@ db.zips.aggregate([{
 		}
 	}
 }])
+
+## using $match to filter out documents
+same schema
+
+## query
+db.zips.aggregate([
+	{
+		$match: {
+			state: 'NY'
+		}
+	}
+])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
