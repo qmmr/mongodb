@@ -92,6 +92,19 @@ db.zips.aggregate([
 	}
 ])
 
+### $match can filter like regular find
+this will filter out documents that have less than 100000 population
+db.zips.aggregate([
+	{
+		$match: {
+			pop: {
+				$gt: 100000
+			}
+		}
+	}
+}
+])
+
 
 
 
