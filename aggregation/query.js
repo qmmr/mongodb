@@ -19,6 +19,14 @@ MongoClient.connect('mongodb://127.0.0.1:27017/usa', function (err, db) {
 					$addToSet: '$_id'
 				}
 			}
+		},
+		{
+			$project: {
+				_id: 0,
+				city: '$_id',
+				population: 1,
+				zips: 1
+			}
 		}
 	]
 
