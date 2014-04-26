@@ -94,6 +94,7 @@ db.zips.aggregate([
 
 ### $match can filter like regular find
 this will filter out documents that have less than 100000 population
+
 db.zips.aggregate([
 	{
 		$match: {
@@ -102,7 +103,41 @@ db.zips.aggregate([
 			}
 		}
 	}
-}
+])
+
+## $sort - after projection
+same schema, using the $match
+
+db.zips.aggregate([
+	{
+		$match: {
+			state: 'NY'
+		}
+	},
+	{
+		$group: {
+			_id: '$city',
+			population: {
+				$sum: '$pop'
+			},
+			zips: {
+				$addToSet: '$_id'
+			}
+		}
+	},
+	{
+		$project: {
+			_id: 0,
+			city: '$_id',
+			population: 1,
+			zips: 1
+		}
+	},
+	{
+		$sort: {
+			population: -1
+		}
+	}
 ])
 
 
