@@ -106,6 +106,11 @@ db.zips.aggregate([
 ])
 
 ## $sort - after projection
+same schema
+
+## query - sort by state, city both ascending
+db.zips.aggregate([{ $sort: { state: 1, city: 1 } }])
+
 same schema, using the $match
 
 db.zips.aggregate([
