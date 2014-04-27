@@ -187,7 +187,23 @@ db.zips.aggregate([
 	}
 ])
 
+## using $first and $last
+same schema
 
+## query to sort by state and city and show only largest city in each state
+db.zips.aggregate([
+	{
+		$group: {
+			_id: {
+				state: "$state",
+				city: "$city"
+			},
+			population: {
+				$sum: "$pop"
+			}
+		}
+	}
+])
 
 
 
