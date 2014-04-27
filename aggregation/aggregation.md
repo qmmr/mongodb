@@ -145,7 +145,47 @@ db.zips.aggregate([
 	}
 ])
 
+## $skip and $limit // !important - always use $skip first then $limit and only
+// after you $sort
 
+## query - this will skip the first 5 results and limit the rest to 3
+db.zips.aggregate([
+	{
+		$match: {
+			state: 'NY'
+		}
+	},
+	{
+		$group: {
+			_id: '$city',
+			population: {
+				$sum: '$pop'
+			},
+			zips: {
+				$addToSet: '$_id'
+			}
+		}
+	},
+	{
+		$project: {
+			_id: 0,
+			city: '$_id',
+			population: 1,
+			zips: 1
+		}
+	},
+	{
+		$sort: {
+			population: -1
+		}
+	},
+	{
+		$skip: 5
+	},
+	{
+		$limit: 3
+	}
+])
 
 
 
