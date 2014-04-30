@@ -42,7 +42,13 @@ If you prefer, you may download the handout and perform your analysis on your ma
 > mongoimport -d test -c grades --drop small_zips.json
 
 ### Answer:
-    
+    db.zips.aggregate([
+        { $match: {$or: [ {state: "CA"}, {state: "NY"} ] } },
+        { $group: { _id: { city: "$city" }, pop: { $sum: "$pop" } } },
+        { $match: { "pop": { $gt: 25000 } } },
+        { $group: { _id: null, avg_pop_of_city: { $avg: "$pop" } } }
+    ])
+    { "_id" : null, "avg_pop_of_city" : 44804.782608695656 }
 
 ## Homework: Homework 5.3 (Hands On)
 
@@ -102,7 +108,6 @@ If you prefer, you may download the handout and perform your analysis on your ma
         { $sort: { 'class_avg': -1 } }
     ])
 
-
 ## Homework: Homework 5.4
 
 Removing Rural Residents
@@ -117,11 +122,7 @@ yields 29,467 documents.
 The project operator can extract the first digit from any field. For example, to extract the first digit from the city field, you could write this query:
 
     db.zips.aggregate([
-        {$project: 
-            {
-                first_char: {$substr : ["$city",0,1]},
-            }   
-        }
+        {$project: { first_char: { $substr : ["$city", 0, 1] } } }
     ])
 
 Using the aggregation framework, calculate the sum total of people who are living in a zip code where the city starts with a digit. Choose the answer below. 
@@ -132,7 +133,7 @@ Note that you will need to probably change your projection to send more info thr
     db.zips.aggregate([
         { $project: { _id: 0, city: 1, pop: 1 } },
         { $match: { city: /^\d.*/ } },
-        { $group: { _id: null, pop: {$sum: "$pop" } } },
+        { $group: { _id: null, pop: { $sum: "$pop" } } },
         { $sort: { city: 1} }
     ])
 
