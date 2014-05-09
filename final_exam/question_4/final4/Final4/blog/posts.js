@@ -118,12 +118,26 @@ function PostsDAO(db) {
         // Here is an example of how to build a selector with the 'comment_ordinal' variable
         // We have to do it this way because a literal object with variables in field names such as:
         // { 'comments.' + comment_ordinal + '.author' : 'Frank' } is illegal Javascript.
-        var selector_example = {};
-        var comment_ordinal_example = 0;
-        selector_example['comments.' + comment_ordinal_example + '.author'] = 'Frank';
+        // var selector_example = {};
+        // var comment_ordinal_example = 0;
+        // selector_example['comments.' + comment_ordinal_example + '.author'] = 'Frank';
         // Now selector_example = { 'comments.0.author' : 'Frank' } which is a selector for the
         // string 'Frank' in the 'author' field of the first element of the 'comments' array (which
         // is zero indexed).
+
+        posts.findOne({'permalink': permalink}, function(err, post) {
+            "use strict";
+
+            if (err) return callback(err, null);
+
+            var selector = {};
+            selector['comments.' + comment_ordinal_example + '.author'] = '';
+            var options = { $inc: { num_likes: 1 } };
+            posts.update(selector, options, function ( err, post ) {
+                if (err) callback(err, null)
+                // updated
+            })
+        })
 
         // TODO: Final exam question - Increment the number of likes
         callback(Error("incrementLikes NYI"), null);
