@@ -1,9 +1,19 @@
 html5
 html
-	head
-	title= pageTitle
+    head
+    title= pageTitle
 body
-	header
-		h1= pageTitle
-	section.content
-		block content
+    header
+        h1= pageTitle
+    section.login
+        ul
+            if session.isLoggedIn
+                li
+                    a(href="/logout") Logout
+            else
+                li
+                    a(href="/login") Login
+                li
+                    a(href="/signup") Signup
+    section.content
+        block content
