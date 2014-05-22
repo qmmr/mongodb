@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    form(method="post", action="/login", enctype="x-www-form-urlencoded")
+        h3 Log in
+        if invalid
+            .error Please enter valid email address and password
+        ul
+            li
+                label(for="email") Email
+                input#email(type="email", name="email")
+            li
+                label(for="password") Password
+                input#password(type="password", name="password")
+        input#submit(name="submit", type="submit", value="Log in")
