@@ -9,8 +9,9 @@
     },
     "rules": {
         "eqeqeq": 1,
-        "curly": 2,
+        "curly": [1, "multi"],
         "quotes": [1, "single"],
+        "no-unused-vars": [2, {"vars": "all", "args": "none"}],
 
         // best practices
         "no-yoda": 0,
