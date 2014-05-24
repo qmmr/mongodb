@@ -1,0 +1,19 @@
+{
+    "env": {
+        "node": true,
+        "browser": true
+    },
+    "globals": {
+        "assert": false,
+        "arguments": false
+    },
+    "rules": {
+        "eqeqeq": 1,
+        "curly": 2,
+        "quotes": [1, "single"],
+
+        // best practices
+        "no-yoda": 0,
+        "block-scoped-var": 2
+    }
+}
