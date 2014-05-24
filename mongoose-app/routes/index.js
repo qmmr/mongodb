@@ -1,18 +1,13 @@
-var errors = require('./errors')
+var errors = require('./errors');
+var login = require('./login');
 
 module.exports = function ( app ) {
 
-    app.get('/', function ( req, resp ) {
-        resp.render('home.jade')
+    app.get('/', function ( req, res ) {
+        res.render('home.jade')
     });
 
-    app.get('/login', function ( req, resp ) {
-        resp.render('login.jade');
-    });
-
-    app.get('/signup', function ( req, resp ) {
-        resp.render('signup.jade');
-    });
+    login( app );
 
     errors( app );
 }

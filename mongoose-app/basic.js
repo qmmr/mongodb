@@ -1,13 +1,13 @@
 var mongoose = require('mongoose')
 var express = require('express')
 
-mongoose.connect('mongodb://localhost', function(err) {
+mongoose.connect('mongodb://localhost', function ( err ) {
 	if (err) throw err
 	console.log('connected to mongodb!')
 
 	var app = express()
-	app.get('/', function (req, resp) {
-		resp.send(200, 'hello from mongoose!')
+	app.get('/', function ( req, res ) {
+		res.send(200, 'hello from mongoose!')
 	})
 
 	app.listen(3000, function () {

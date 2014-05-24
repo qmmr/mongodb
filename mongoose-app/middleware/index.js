@@ -10,9 +10,9 @@ module.exports = function ( app ) {
     app.use(express.bodyParser());
 
     // expose session to views
-    app.use(function ( req, resp, next ) {
+    app.use(function ( req, res, next ) {
         // anything we set on locals is available in views
-        resp.locals.session = req.session;
+        res.locals.session = req.session;
         next();
     });
 };
