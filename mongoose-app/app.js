@@ -11,7 +11,7 @@ mongoose.connect('mongodb://localhost', function(err) {
     var app = express();
     routes(app);
 
-    app.listen(PORT, function (req, res) {
+    app.listen(PORT, function(req, res) {
         console.log('now listening on http://localhost:' + PORT);
     });
 });
