@@ -9,9 +9,11 @@
   "author": "Marcin Kumorek",
   "license": "BSD",
   "dependencies": {
-    "mongoose": "^3.8.8",
+    "body-parser": "^1.2.0",
+    "cookie-parser": "^1.1.0",
     "express": "^4.1.1",
-    "jade": "^1.3.1"
+    "jade": "^1.3.1",
+    "mongoose": "^3.8.8"
   },
   "devDependencies": {
     "eslint": "^0.6.2",

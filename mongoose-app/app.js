@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var express = require('express');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var routes = require('./routes');
 var PORT = 8888;
 
@@ -11,6 +12,7 @@ mongoose.connect('mongodb://localhost', function(err) {
 
     var app = express();
     app.use(bodyParser());
+    app.use(cookieParser('mongooseApp'));
     routes(app);
 
     app.listen(PORT, function() {
