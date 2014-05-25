@@ -5,11 +5,12 @@ var login = require('./login');
 
 module.exports = function ( app ) {
 
-    app.get('/', function ( req, res ) {
-        res.render('home.jade');
-    });
+    app.route('/')
+        .get(function ( req, res ) {
+            res.render('home.jade');
+        });
 
-    login( app );
+    login(app);
 
-    errors( app );
+    errors(app);
 };
