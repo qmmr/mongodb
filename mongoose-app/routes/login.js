@@ -17,23 +17,25 @@ module.exports = function(app) {
 
     app.route('/signup')
         .get(function(req, res) {
+            console.log('req.cookies', req.cookies)
+            req.cookies.test = 'foo';
+            console.log('req.cookies', req.cookies)
             res.render('signup.jade');
         })
         .post(function(req, res, next) {
             var email = cleanString(req.param('email'));
             var password = cleanString(req.param('password'));
 
-            if ( !(email && password) ) return invalid(res, '/signup');
+            if (!(email && password)) return invalid(res, '/signup');
 
             User.findById(email, function(err, user) {
-                if ( err ) return next( err );
+                if (err) return next(err);
 
                 // check if the user was found
-                if ( user )
-                    return res.render('signup.jade', { exists: true });
+                if (user) return res.render('signup.jade', { exists: true });
 
-                crypto.randomBytes(16, function ( err, bytes ) {
-                    if ( err ) return next( err );
+                crypto.randomBytes(16, function (err, bytes) {
+                    if (err) return next(err);
 
                     var user = { _id: email };
                     user.salt = bytes.toString('utf8');
