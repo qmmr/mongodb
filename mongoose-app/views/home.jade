@@ -1,6 +1,9 @@
 extends layout
 
 block content
+    if user
+        p
+            a(href='/post/create') New post
     if !(posts && posts.length)
         p Nothing to see here. Move along...
     else

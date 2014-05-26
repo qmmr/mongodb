@@ -7,7 +7,9 @@ body
         h1= pageTitle
     section.login
         ul
-            if session && session.isLoggedIn
+            if user
+                li
+                    h2 Hello #{user}
                 li
                     a(href="/logout") Logout
             else
