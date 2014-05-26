@@ -1,0 +1,7 @@
+extends ../layout
+
+block content
+    h2= post.title
+    p= post.body
+    span= post.createdOn.toGMTString()
+    p by #{post.author.fullname}
