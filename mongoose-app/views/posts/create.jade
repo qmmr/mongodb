@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+    form(method="post", action="/posts/create", enctype="x-www-form-urlencoded")
+        h3 Create new post
+        div
+            label(for="title") Title
+            input#title(type="title", name="title")
+            label(for="body") Body
+            textarea#body(type="body", name="body")
+        input#submit(name="submit", type="submit", value="Create post")
