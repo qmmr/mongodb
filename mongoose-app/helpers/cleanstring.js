@@ -1,5 +1,5 @@
 'use strict';
 
-module.exports = function(str) {
+module.exports = function ( str ) {
     return str.trim().toLowerCase();
 };
