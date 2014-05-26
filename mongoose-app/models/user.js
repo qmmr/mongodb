@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var validEmail = require('../helpers/validate/email');
 
-var User = new Schema({
+var userSchema = new Schema({
     _id: { type: String, lowercase: true, trim: true, validate: validEmail },
     name: { first: String, last: String },
     salt: { type: String, required: true },
@@ -12,4 +12,8 @@ var User = new Schema({
     created: { type: Date, default: Date.now } // optional index: true
 });
 
-mongoose.model('User', User);
+userSchema.virtual('fullname').get(function () {
+    return this.name.first + ' ' + this.name.last;
+});
+
+mongoose.model( 'User', userSchema );
