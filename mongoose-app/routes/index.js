@@ -7,7 +7,8 @@ module.exports = function ( app ) {
 
     app.route('/')
         .get(function ( req, res ) {
-            res.render('home.jade');
+            console.log('req.session', req.session);
+            res.render('home.jade', req.session);
         });
 
     login(app);
