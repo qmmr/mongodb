@@ -13,7 +13,7 @@ gulp.task('eslint', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('**/*.js', ['eslint']);
+    gulp.watch(['**/*.js', '!node_modules/**/*.js'], ['eslint']);
 });
 
 gulp.task('default', ['eslint']);
