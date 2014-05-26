@@ -22,6 +22,8 @@ module.exports = function ( app ) {
         .post(function ( req, res, next ) {
             var email = cleanString(req.param('email'));
             var password = cleanString(req.param('password'));
+            var firstName = req.param( 'firstname' ).trim();
+            var lastName = req.param( 'lastname' ).trim();
 
             if (!(email && password)) return invalid(res, 'signup');
 
@@ -37,6 +39,10 @@ module.exports = function ( app ) {
                     var user = { _id: email };
                     user.salt = bytes.toString('utf8');
                     user.hash = hash(password, user.salt);
+                    user.name = {
+                        first: firstName,
+                        last: lastName
+                    };
 
                     User.create(user, function ( err, newUser ) {
                         if (err) {
