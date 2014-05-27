@@ -16,6 +16,6 @@ var Post = mongoose.model( 'BlogPost', blogSchema );
 // handle events
 Post.on('afterInsert', function ( post ) {
     // fake tweet this
-    var url = 'http://localhost:8888/posts/';
+    var url = 'http://localhost:8888/post/';
     console.log('Read my new blog post! %s%s', url, post.id);
 });
