@@ -5,3 +5,7 @@ block content
     p= post.body
     span= post.createdOn.toGMTString()
     p by #{post.author.fullname}
+    div.edit
+        a(href="/post/edit/#{post.id}") Edit
+    div.delete
+        a(href="/post/remove/#{post.id}") Delete
