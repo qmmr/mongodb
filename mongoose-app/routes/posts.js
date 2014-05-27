@@ -19,7 +19,20 @@ module.exports = function ( app ) {
             });
         });
 
-    app.route('/post/remove/:id')
+    app.route('/post/edit/:id')
+        .get(loggedIn, function ( req, res, next ) {
+            res.render('post/create', {
+                post: BlogPost.findById( req.param('id') )
+            });
+        })
+        .post(loggedIn, function ( req, res, next ) {
+            BlogPost.edit(req, function ( err ) {
+                if ( err ) return next( err );
+                res.redirect( '/post/' + req.param('id') );
+            });
+        });
+
+    app.route( '/post/remove/:id' )
         .get(loggedIn, function ( req, res, next ) {
             var id = req.param('id');
 
@@ -38,9 +51,9 @@ module.exports = function ( app ) {
             });
         });
 
-    app.route('/post')
+    app.route( '/post/create' )
         .get(loggedIn, function ( req, res ) {
-            res.render('posts/create');
+            res.render( 'post/create' );
         })
         .post(loggedIn, function ( req, res, next ) {
             var title = req.param('title');
@@ -53,7 +66,7 @@ module.exports = function ( app ) {
                 author: user
             }, function ( err, post ) {
                 if ( err ) return next( err );
-                res.redirect('/post/' + post.id);
+                res.redirect( '/post/' + post.id );
             });
         });
 };
