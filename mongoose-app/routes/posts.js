@@ -19,6 +19,25 @@ module.exports = function ( app ) {
             });
         });
 
+    app.route('/post/remove/:id')
+        .get(loggedIn, function ( req, res, next ) {
+            var id = req.param('id');
+
+            BlogPost.findOne({ _id: id }, function ( err, post ) {
+                if ( err ) return next( err );
+                // check if user is author of the post
+                if ( post.author !== req.session.user ) {
+                    return res.send(403);
+                }
+
+                post.remove(function ( err ) {
+                    if ( err ) return next( err );
+                    // TODO: give information to the user
+                    res.redirect('/');
+                });
+            });
+        });
+
     app.route('/post')
         .get(loggedIn, function ( req, res ) {
             res.render('posts/create');

@@ -8,11 +8,12 @@ var login = require('./login');
 var posts = require('./posts');
 
 module.exports = function ( app ) {
-
     app.route('/')
         .get(function ( req, res ) {
             BlogPost.find().sort('createdOn').limit(10).exec(function ( err, posts ) {
-                res.render('home.jade', { posts: posts });
+                if ( err ) throw new Error( err );
+
+                res.render('home.jade', { posts: posts, user: req.session.user });
             });
         });
 
