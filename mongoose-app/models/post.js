@@ -11,6 +11,7 @@ var blogSchema = mongoose.Schema({
 blogSchema.statics.edit = function ( req, cb ) {
     var id = req.param( 'id' );
     var author = req.session.user;
+    console.log('id', id, 'author', author);
 
     // validate that current user authored the post
     var query = { _id: id, author: author };

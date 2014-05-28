@@ -1,14 +1,14 @@
 extends ../layout
 
 block content
-    - var action = post ? 'post/edit/#{post.id}' : '/post/create';
+    - var action = post ? "/post/edit/#{post.id}" : "/post/create";
     - var title = post ? post.title : ''
     - var body = post ? post.body : ''
     form(method="post", action=action)
         h3 Create new post
         div
             label(for="title") Title
-            input#title(type="title", name=title)
+            input#title(type="text", name="title" value=title)
             label(for="body") Body
             textarea#body(type="body", name="body")= body
         input#submit(name="submit", type="submit", value="Save")
