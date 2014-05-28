@@ -6,6 +6,7 @@ var BlogPost = mongoose.model('BlogPost');
 var errors = require('./errors');
 var login = require('./login');
 var posts = require('./posts');
+var comments = require('./comments');
 
 module.exports = function ( app ) {
     app.route('/')
@@ -19,5 +20,6 @@ module.exports = function ( app ) {
 
     login( app );
     posts( app );
+    comments( app );
     errors( app );
 };

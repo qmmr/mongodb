@@ -9,3 +9,14 @@ block content
         a(href="/post/edit/#{post.id}") Edit
     div.delete
         a(href="/post/remove/#{post.id}") Delete
+    if post.comments.length
+        .comments
+            ul
+                each comment in comments
+                    li
+                        p.text= comment.text
+                        p.author= comment.author
+    if user
+        form(method="post", action="post/comment" + post.id)
+            textarea(name="text")
+            input#submit(type="submit", value="Save")

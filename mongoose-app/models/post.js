@@ -2,9 +2,10 @@
 
 var mongoose = require('mongoose');
 var blogSchema = mongoose.Schema({
-    title: { type: String, trime: true },
+    title: { type: String, trim: true },
     body: { type: String },
     author: { type: String, ref: 'User' },
+    comments: { type: Array },
     createdOn: { type: Date, default: Date.now }
 });
 
