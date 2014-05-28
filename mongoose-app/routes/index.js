@@ -13,7 +13,7 @@ module.exports = function ( app ) {
             BlogPost.find().sort('createdOn').limit(10).exec(function ( err, posts ) {
                 if ( err ) throw new Error( err );
 
-                res.render('home.jade', { posts: posts, user: req.session.user });
+                res.render('home.jade', { pageTitle: 'My rants...', posts: posts, user: req.session.user });
             });
         });
 

@@ -12,12 +12,12 @@ var crypto = require('crypto');
 module.exports = function ( app ) {
 
     var invalid = function ( res, type ) {
-        return res.render(type, { invalid: !0 });
+        return res.render(type, { pageTitle: 'My rants...', invalid: !0 });
     };
 
     app.route('/signup')
         .get(function ( req, res ) {
-            res.render('signup');
+            res.render('signup', {  pageTitle: 'My rants...' });
         })
         .post(function ( req, res, next ) {
             var email = cleanString(req.param('email'));
@@ -64,8 +64,7 @@ module.exports = function ( app ) {
 
     app.route('/login')
         .get(function ( req, res ) {
-            // console.log('/login req.session', req.session)
-            res.render('login.jade', req.session);
+            res.render('login.jade', {  pageTitle: 'My rants...', user: req.session.username });
         })
         .post(function ( req, res, next ) {
             // validate input

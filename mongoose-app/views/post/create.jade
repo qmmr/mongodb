@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-    - var action = post ? "/post/edit/#{post.id}" : "/post/create";
+    - var action = post ? "/post/edit/" + post.id : "/post/create";
     - var title = post ? post.title : ''
     - var body = post ? post.body : ''
     form(method="post", action=action)
